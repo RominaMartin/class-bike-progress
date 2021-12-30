@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Preview } from "styles/Home";
 import Bike from "../components/bike/Bike";
+import ColorPicker from "../components/colorPicker/ColorPicker";
 
 const Home: NextPage = () => {
   return (
@@ -17,6 +18,7 @@ const Home: NextPage = () => {
 
       <Preview>
         <Bike />
+        <ColorPicker />
       </Preview>
       <div></div>
     </div>
