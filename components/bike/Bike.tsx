@@ -14,20 +14,20 @@ interface Props {
 }
 
 const Bike: FC<Props> = ({
-  chain,
-  engine,
-  frame,
-  handlebar,
-  handles,
-  radius,
-  rim,
-  seat,
-  seatpost,
-  tires,
+  chain = "#1B1C1C",
+  engine = "#C1C2BE",
+  frame = "#557135",
+  handlebar = "#C1C2BE",
+  handles = "#1B1C1C",
+  radius = "#C1C2BE",
+  rim = "#EEA073",
+  seat = "#1B1C1C",
+  seatpost = "#C1C2BE",
+  tires = "#1B1C1C",
 }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 200 118">
-      <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1">
+      <g fill="none" fillRule="nonzero" stroke="none" strokeWidth="1">
         <g id="wheels" transform="translate(0 38.45)">
           <g id="tires" fill={tires}>
             <path d="M39.4 73.96c-19.0842 0-34.555-15.4708-34.555-34.555S20.3158 4.85 39.4 4.85c19.0814 0 34.55 15.4686 34.55 34.55 0 19.0814-15.4686 34.55-34.55 34.55v.01ZM39.4 0C17.64 0 0 17.64 0 39.4c0 21.76 17.64 39.4 39.4 39.4 21.76 0 39.4-17.64 39.4-39.4C78.8 17.64 61.16 0 39.4 0Z" />
@@ -197,19 +197,6 @@ const Bike: FC<Props> = ({
       </g>
     </svg>
   );
-};
-
-Bike.defaultProps = {
-  chain: "#1B1C1C",
-  engine: "#C1C2BE",
-  frame: "#557135",
-  handlebar: "#C1C2BE",
-  handles: "#1B1C1C",
-  radius: "#C1C2BE",
-  rim: "#EEA073",
-  seat: "#1B1C1C",
-  seatpost: "#C1C2BE",
-  tires: "#1B1C1C",
 };
 
 export default Bike;

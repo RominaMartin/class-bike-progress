@@ -1,12 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
+import { Preview } from "styles/Home";
 import Bike from "../components/bike/Bike";
-import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Class progress - La teacher Canaria</title>
         <meta name="description" content="Class progress" />
@@ -16,10 +15,10 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <div className={styles.preview}>
+      <Preview>
         <Bike />
-      </div>
-      <div className={styles.grid}></div>
+      </Preview>
+      <div></div>
     </div>
   );
 };
