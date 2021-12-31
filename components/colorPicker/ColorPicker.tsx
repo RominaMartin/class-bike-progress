@@ -2,9 +2,10 @@ import { FC, MouseEvent } from "react";
 import { Color, Container } from "./ColorPicker.styled";
 
 interface Props {
+  visible?: boolean;
   colors?: Array<string>;
-  onChange?: (color: string | null) => void;
-  onHover?: (color: string | null) => void;
+  onChange?: (color: string) => void;
+  onHover?: (color: string) => void;
 }
 
 const defaultColors = [
@@ -19,6 +20,7 @@ const defaultColors = [
 ];
 
 const ColorPicker: FC<Props> = ({
+  visible = false,
   colors = defaultColors,
   onChange = () => {},
   onHover = () => {},
@@ -32,7 +34,7 @@ const ColorPicker: FC<Props> = ({
     onHover(color);
   };
 
-  return (
+  return visible ? (
     <Container>
       {colors.map((color) => (
         <Color
@@ -43,7 +45,7 @@ const ColorPicker: FC<Props> = ({
         />
       ))}
     </Container>
-  );
+  ) : null;
 };
 
 export default ColorPicker;

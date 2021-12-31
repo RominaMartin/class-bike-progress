@@ -9,6 +9,7 @@ export const Container = styled.button`
   box-sizing: border-box;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.white};
+  position: relative;
 
   :hover {
     border-color: #e4c7d0;

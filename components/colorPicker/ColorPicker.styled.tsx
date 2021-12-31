@@ -7,8 +7,9 @@ export const Container = styled.div`
   height: max-content;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: rgb(0 0 0 / 15%) 0px 3px 12px;
-  width: 110px;
+  width: 100px;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export const Color = styled.div`

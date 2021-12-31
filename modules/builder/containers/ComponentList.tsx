@@ -2,6 +2,11 @@ import { FC } from "react";
 import BikeComponent from "../components/BikeComponent";
 import { Container } from "./ComponentList.styled";
 
+interface Props {
+  onColorHover: (id: string) => void;
+  onColorSelection: (id: string) => void;
+}
+
 const components = [
   "chain",
   "engine",
@@ -15,10 +20,14 @@ const components = [
   "tire",
 ];
 
-const ComponentList: FC = () => {
-  const handleComponentClick = (id: string) => {
-    console.log(id);
-  };
+const ComponentList: FC<Props> = ({ onColorHover = () => {} }) => {
+  //   const handleComponentClick = (id: string) => {
+  //     console.log(id);
+
+  //   };
+  //   const handleComponentClick = (id: string) => {
+  //     console.log(id);
+  //   };
 
   return (
     <Container>
@@ -26,7 +35,8 @@ const ComponentList: FC = () => {
         <BikeComponent
           key={component}
           id={component}
-          onClick={handleComponentClick}
+          onColorHover={onColorHover}
+          onColorSelection={onColorHover}
         />
       ))}
     </Container>
