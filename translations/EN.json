@@ -1,0 +1,16 @@
+{
+  "builder": {
+    "bike": {
+      "chain": "Chain",
+      "engine": "Engine",
+      "frame": "Frame",
+      "handlebar": "Handlebar",
+      "grip": "Grip",
+      "spoke": "Spoke",
+      "rim": "Rim",
+      "saddle": "Saddle",
+      "seatpost": "Seatpost",
+      "tire": "Tire"
+    }
+  }
+}

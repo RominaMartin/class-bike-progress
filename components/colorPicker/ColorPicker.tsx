@@ -35,7 +35,12 @@ const ColorPicker: FC<Props> = ({
   return (
     <Container>
       {colors.map((color) => (
-        <Color color={color} onClick={handleClick} onMouseOver={handleHover} />
+        <Color
+          key={color}
+          color={color}
+          onClick={handleClick}
+          onMouseOver={handleHover}
+        />
       ))}
     </Container>
   );

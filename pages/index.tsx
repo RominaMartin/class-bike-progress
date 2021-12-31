@@ -1,12 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Preview } from "styles/Home";
-import Bike from "../components/bike/Bike";
-import ColorPicker from "../components/colorPicker/ColorPicker";
+import { Grid, Preview } from "styles/Home.styled";
+import Builder from "modules/builder/containers/Builder";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <>
       <Head>
         <title>Class progress - La teacher Canaria</title>
         <meta name="description" content="Class progress" />
@@ -17,11 +16,10 @@ const Home: NextPage = () => {
       </Head>
 
       <Preview>
-        <Bike />
-        <ColorPicker />
+        <Builder />
       </Preview>
-      <div></div>
-    </div>
+      <Grid />
+    </>
   );
 };
 
