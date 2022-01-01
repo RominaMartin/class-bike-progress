@@ -18,6 +18,16 @@ const colors = {
   aubergine200: "#EFDDE3",
   aubergine100: "#F4EFF1",
   white: "#FFFFFF",
+  redsalsa: "#f94144ff",
+  orangered: "#f3722cff",
+  yelloworange: "#f8961eff",
+  mangotango: "#f9844aff",
+  maizecrayola: "#f9c74fff",
+  pistachio: "#90be6dff",
+  zomp: "#43aa8bff",
+  cadetblue: "#4d908eff",
+  queenblue: "#577590ff",
+  cgblue: "#277da1ff",
 };
 
 const spacings = {

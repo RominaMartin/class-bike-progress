@@ -1,15 +1,26 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface IColorPickerContainer {
+  visible: boolean;
+}
+export const Container = styled.div<IColorPickerContainer>`
+  position: absolute;
+  top: 0;
+  left: ${({ visible }) => (visible ? "100%" : "-200px")};
   display: flex;
   background-color: ${({ theme }) => theme.colors.white};
   padding: ${({ theme }) => theme.spacings.small1};
-  height: max-content;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid #e4c7d0;
+  border-left: none;
   box-shadow: rgb(0 0 0 / 15%) 0px 3px 12px;
-  width: 100px;
+  width: 180px;
   flex-wrap: wrap;
   justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
+  transition: all 0.5s ease;
+  align-items: center;
+  z-index: -1;
 `;
 
 export const Color = styled.div`

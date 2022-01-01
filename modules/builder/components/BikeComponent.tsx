@@ -1,6 +1,6 @@
 import { ComponentType, FC, MouseEvent, useState } from "react";
 import { FormattedMessage } from "react-intl";
-import { Container } from "./BikeComponent.styled";
+import { Container, StyledButton } from "./BikeComponent.styled";
 import ColorPicker from "components/colorPicker/ColorPicker";
 import useOnclickOutside from "react-cool-onclickoutside";
 
@@ -16,24 +16,36 @@ const BikeComponent: ComponentType<Props> = ({
   onColorSelection = () => {},
 }) => {
   const [isColorPickerVisible, setColorPickerVisible] = useState(false);
+  const [isHoverActive, setIsHoverActive] = useState(true);
   const ref = useOnclickOutside(() => {
     setColorPickerVisible(false);
   });
 
   const handleClick = () => {
     setColorPickerVisible(true);
+    setIsHoverActive(true);
   };
 
   const handleColorHovered = (color: string) => {
-    onColorHover(id, color);
+    if (isHoverActive) {
+      onColorHover(id, color);
+    }
+  };
+  const handleColorSelected = (color: string) => {
+    onColorSelection(id, color);
+    setColorPickerVisible(false);
+    setIsHoverActive(false);
   };
 
   return (
-    <Container ref={ref} onClick={handleClick}>
-      <FormattedMessage id={`builder.bike.${id}`} />
+    <Container ref={ref}>
+      <StyledButton onClick={handleClick}>
+        <FormattedMessage id={`builder.bike.${id}`} />
+      </StyledButton>
       <ColorPicker
         visible={isColorPickerVisible}
         onHover={handleColorHovered}
+        onChange={handleColorSelected}
       />
     </Container>
   );

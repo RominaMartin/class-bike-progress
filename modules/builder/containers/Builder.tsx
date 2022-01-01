@@ -14,8 +14,11 @@ const Builder: FC = () => {
 
   return (
     <Container>
+      <ComponentList
+        onColorHover={handleColorHover}
+        onColorSelection={handleColorHover}
+      />
       <Bike {...bikeColors} />
-      <ComponentList onColorHover={handleColorHover} />
     </Container>
   );
 };

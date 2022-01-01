@@ -1,4 +1,5 @@
 import { FC, MouseEvent } from "react";
+import { useTheme } from "styled-components";
 import { Color, Container } from "./ColorPicker.styled";
 
 interface Props {
@@ -8,34 +9,34 @@ interface Props {
   onHover?: (color: string) => void;
 }
 
-const defaultColors = [
-  "#B80000",
-  "#DB3E00",
-  "#FCCB00",
-  "#008B02",
-  "#006B76",
-  "#1273DE",
-  "#004DCF",
-  "#5300EB",
-];
-
 const ColorPicker: FC<Props> = ({
   visible = false,
-  colors = defaultColors,
+  colors,
   onChange = () => {},
   onHover = () => {},
 }) => {
+  const theme = useTheme();
+  const themeColors = [
+    theme.colors.redsalsa,
+    theme.colors.mangotango,
+    theme.colors.maizecrayola,
+    theme.colors.pistachio,
+    theme.colors.zomp,
+    theme.colors.cadetblue,
+    theme.colors.cgblue,
+  ];
+  colors = colors || themeColors;
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
-    const color = e.currentTarget.getAttribute("color");
+    const color = e.currentTarget.getAttribute("color") || theme.colors.white;
     onChange(color);
   };
   const handleHover = (e: MouseEvent<HTMLDivElement>) => {
-    const color = e.currentTarget.getAttribute("color");
+    const color = e.currentTarget.getAttribute("color") || theme.colors.white;
     onHover(color);
   };
 
-  return visible ? (
-    <Container>
+  return (
+    <Container visible={visible}>
       {colors.map((color) => (
         <Color
           key={color}
@@ -45,7 +46,7 @@ const ColorPicker: FC<Props> = ({
         />
       ))}
     </Container>
-  ) : null;
+  );
 };
 
 export default ColorPicker;

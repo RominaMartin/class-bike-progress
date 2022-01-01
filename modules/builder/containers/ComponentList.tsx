@@ -3,8 +3,8 @@ import BikeComponent from "../components/BikeComponent";
 import { Container } from "./ComponentList.styled";
 
 interface Props {
-  onColorHover: (id: string) => void;
-  onColorSelection: (id: string) => void;
+  onColorHover: (id: string, color: string) => void;
+  onColorSelection: (id: string, color: string) => void;
 }
 
 const components = [
@@ -20,7 +20,10 @@ const components = [
   "tire",
 ];
 
-const ComponentList: FC<Props> = ({ onColorHover = () => {} }) => {
+const ComponentList: FC<Props> = ({
+  onColorHover = () => {},
+  onColorSelection = () => {},
+}) => {
   //   const handleComponentClick = (id: string) => {
   //     console.log(id);
 
@@ -36,7 +39,7 @@ const ComponentList: FC<Props> = ({ onColorHover = () => {} }) => {
           key={component}
           id={component}
           onColorHover={onColorHover}
-          onColorSelection={onColorHover}
+          onColorSelection={onColorSelection}
         />
       ))}
     </Container>
