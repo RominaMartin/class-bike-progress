@@ -12,7 +12,6 @@ export const Container = styled.div<IColorPickerContainer>`
   padding: ${({ theme }) => theme.spacings.small1};
   border: 2px solid #e4c7d0;
   border-left: none;
-  box-shadow: rgb(0 0 0 / 15%) 0px 3px 12px;
   width: 180px;
   flex-wrap: wrap;
   justify-content: center;
@@ -32,7 +31,6 @@ export const Color = styled.div`
 
   :hover {
     outline: 2px solid ${({ theme }) => theme.colors.white};
-    box-shadow: rgb(0 0 0 / 25%) 0px 0px 5px 2px;
     z-index: 2;
   }
 `;

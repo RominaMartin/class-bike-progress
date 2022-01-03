@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useTheme } from "styled-components";
 
 interface Props {
   chain?: string;
@@ -14,17 +15,29 @@ interface Props {
 }
 
 const Bike: FC<Props> = ({
-  chain = "#1B1C1C",
-  engine = "#C1C2BE",
-  frame = "#557135",
-  handlebar = "#C1C2BE",
-  grip = "#1B1C1C",
-  spoke = "#C1C2BE",
-  rim = "#EEA073",
-  saddle = "#1B1C1C",
-  seatpost = "#C1C2BE",
-  tire = "#1B1C1C",
+  chain,
+  engine,
+  frame,
+  handlebar,
+  grip,
+  spoke,
+  rim,
+  saddle,
+  seatpost,
+  tire,
 }) => {
+  const theme = useTheme();
+  chain = chain || theme.colors.silver300;
+  engine = engine || theme.colors.silver200;
+  frame = frame || theme.colors.silver200;
+  handlebar = handlebar || theme.colors.silver200;
+  grip = grip || theme.colors.silver300;
+  spoke = spoke || theme.colors.silver300;
+  rim = rim || theme.colors.silver200;
+  saddle = saddle || theme.colors.silver300;
+  seatpost = seatpost || theme.colors.silver200;
+  tire = tire || theme.colors.silver200;
+
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 200 118">
       <g fill="none" fillRule="nonzero" stroke="none" strokeWidth="1">

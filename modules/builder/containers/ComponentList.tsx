@@ -5,33 +5,26 @@ import { Container } from "./ComponentList.styled";
 interface Props {
   onColorHover: (id: string, color: string) => void;
   onColorSelection: (id: string, color: string) => void;
+  onColorPickerClose: () => void;
 }
 
 const components = [
-  "chain",
-  "engine",
   "frame",
+  "rim",
+  "spoke",
+  "tire",
   "handlebar",
   "grip",
-  "spoke",
-  "rim",
-  "saddle",
+  "engine",
   "seatpost",
-  "tire",
+  "saddle",
 ];
 
 const ComponentList: FC<Props> = ({
   onColorHover = () => {},
   onColorSelection = () => {},
+  onColorPickerClose = () => {},
 }) => {
-  //   const handleComponentClick = (id: string) => {
-  //     console.log(id);
-
-  //   };
-  //   const handleComponentClick = (id: string) => {
-  //     console.log(id);
-  //   };
-
   return (
     <Container>
       {components.map((component) => (
@@ -40,6 +33,7 @@ const ComponentList: FC<Props> = ({
           id={component}
           onColorHover={onColorHover}
           onColorSelection={onColorSelection}
+          onColorPickerClose={onColorPickerClose}
         />
       ))}
     </Container>

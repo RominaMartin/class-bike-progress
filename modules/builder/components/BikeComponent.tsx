@@ -8,22 +8,27 @@ interface Props {
   id: string;
   onColorHover: (id: string, color: string) => void;
   onColorSelection: (id: string, color: string) => void;
+  onColorPickerClose: () => void;
 }
 
 const BikeComponent: ComponentType<Props> = ({
   id,
   onColorHover = () => {},
   onColorSelection = () => {},
+  onColorPickerClose = () => {},
 }) => {
   const [isColorPickerVisible, setColorPickerVisible] = useState(false);
-  const [isHoverActive, setIsHoverActive] = useState(true);
+  const [isHoverActive, setHoverActive] = useState(false);
   const ref = useOnclickOutside(() => {
-    setColorPickerVisible(false);
+    if (isColorPickerVisible) {
+      setColorPickerVisible(false);
+      onColorPickerClose();
+    }
   });
 
   const handleClick = () => {
-    setColorPickerVisible(true);
-    setIsHoverActive(true);
+    setColorPickerVisible(!isColorPickerVisible);
+    setHoverActive(!isHoverActive);
   };
 
   const handleColorHovered = (color: string) => {
@@ -34,12 +39,15 @@ const BikeComponent: ComponentType<Props> = ({
   const handleColorSelected = (color: string) => {
     onColorSelection(id, color);
     setColorPickerVisible(false);
-    setIsHoverActive(false);
+    setHoverActive(false);
   };
 
   return (
     <Container ref={ref}>
-      <StyledButton onClick={handleClick}>
+      <StyledButton
+        onClick={handleClick}
+        colorPickerVisible={isColorPickerVisible}
+      >
         <FormattedMessage id={`builder.bike.${id}`} />
       </StyledButton>
       <ColorPicker

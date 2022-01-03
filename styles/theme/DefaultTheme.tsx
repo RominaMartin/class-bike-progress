@@ -28,6 +28,16 @@ const colors = {
   cadetblue: "#4d908eff",
   queenblue: "#577590ff",
   cgblue: "#277da1ff",
+  black: "#000000",
+  silver100: "#f8f8f9",
+  silver200: "#dfe0e1",
+  silver300: "#c6c7c9",
+  silver400: "#adafb1",
+  silver500: "#949699",
+  silver600: "#7b7e81",
+  silver700: "#636668",
+  silver800: "#4b4d4f",
+  silver900: "#333536",
 };
 
 const spacings = {
