@@ -1,16 +1,18 @@
 {
   "builder": {
+    "title": "Customize",
+    "description": "Bike customization for {group}",
     "bike": {
       "chain": "Chain",
       "engine": "Engine",
       "frame": "Frame",
       "handlebar": "Handlebar",
-      "grip": "Grip",
-      "spoke": "Spoke",
-      "rim": "Rim",
+      "grip": "Grips",
+      "spoke": "Spokes",
+      "rim": "Rims",
       "saddle": "Saddle",
       "seatpost": "Seatpost",
-      "tire": "Tire"
+      "tire": "Tires"
     }
   }
 }

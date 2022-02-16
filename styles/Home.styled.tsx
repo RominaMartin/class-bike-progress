@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Preview = styled.div`
-  height: 50vh;
+  height: calc(100vh - 300px);
   width: 100vw;
 `;
 
-export const Grid = styled.div`
-  height: 50vh;
-  width: 100%;
-  background: beige;
+export const LayoutContainer = styled.div`
+  height: 100vh;
+  width: 100vw;
+  position: relative;
 `;
