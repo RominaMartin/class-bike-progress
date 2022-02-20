@@ -1,18 +1,22 @@
-import { ComponentType, FC, MouseEvent, useState } from "react";
-import { FormattedMessage } from "react-intl";
-import { Container, StyledButton } from "./BikeComponent.styled";
-import ColorPicker from "components/colorPicker/ColorPicker";
-import useOnclickOutside from "react-cool-onclickoutside";
+import { ComponentType, FC, MouseEvent, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import useOnclickOutside from 'react-cool-onclickoutside';
+
+import ColorPicker from 'components/colorPicker/ColorPicker';
+
+import { Container, StyledButton } from './BikeComponent.styled';
 
 interface Props {
   id: string;
   onColorHover: (id: string, color: string) => void;
   onColorSelection: (id: string, color: string) => void;
   onColorPickerClose: () => void;
+  disabled: boolean;
 }
 
 const BikeComponent: ComponentType<Props> = ({
   id,
+  disabled,
   onColorHover = () => {},
   onColorSelection = () => {},
   onColorPickerClose = () => {},
@@ -45,6 +49,7 @@ const BikeComponent: ComponentType<Props> = ({
   return (
     <Container ref={ref}>
       <StyledButton
+        disabled={disabled}
         onClick={handleClick}
         colorPickerVisible={isColorPickerVisible}
       >

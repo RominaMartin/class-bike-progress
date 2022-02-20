@@ -6,4 +6,5 @@ export const Container = styled.div`
   height: 100%;
   max-height: 420px;
   min-height: 360px;
+  min-width: 100px;
 `;

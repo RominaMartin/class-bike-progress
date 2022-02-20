@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Builder from 'modules/builder/containers/Builder';
 import Header from 'components/header/Header';
-import { groups } from 'context/Bikes/DefaultValues';
-import { IColors } from 'context/BikesContext';
+import { IColors, IGroup } from 'definitions/Bikes.d';
 import GroupListContainer from 'modules/group/containers/GroupListContainer';
+import { useLocalStorage } from 'utils/hooks/useStorage';
+import { request } from 'utils/fetcher';
 
 import type { NextPage } from 'next';
 
@@ -18,9 +19,21 @@ const Home: NextPage = () => {
   const intl = useIntl();
   const [view, setView] = useState(VIEWS.builder);
   const [activeGroupId, setActiveGroupId] = useState<string | null>(null);
-  const [currentGroups, setCurrentGroups] = useState(groups);
+  const [activeGroup, setActiveGroup] = useState<any | null>(null);
+  const [currentGroups, setCurrentGroups] = useLocalStorage<IGroup | null>('groups');
 
-  const activeGroup = activeGroupId ? currentGroups[activeGroupId] : null;
+  useEffect(() => {
+    request('/bikes').then(data => {
+      setCurrentGroups(data);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (currentGroups && activeGroupId) setActiveGroup(currentGroups[activeGroupId]);
+    else setActiveGroup(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeGroupId]);
 
   const handleComponentChange = (colors: IColors) => {
     if (activeGroupId && activeGroup) {
@@ -32,7 +45,13 @@ const Home: NextPage = () => {
     }
   };
 
-  const handleGroupClick = (id: string) => setActiveGroupId(id);
+  const handleGroupClick = (id: string) => {
+    if (activeGroupId === id) {
+      setActiveGroupId(null);
+    } else {
+      setActiveGroupId(id);
+    }
+  };
 
   return (
     <div>
@@ -43,12 +62,18 @@ const Home: NextPage = () => {
           { group: activeGroup?.label }
         )}
       />
-      <Builder colors={activeGroup?.colors} onComponentChange={handleComponentChange} />
-      <GroupListContainer
-        activeGroupId={activeGroupId}
-        groups={currentGroups}
-        onClick={handleGroupClick}
+      <Builder
+        components={activeGroup?.components || {}}
+        colors={activeGroup?.colors || {}}
+        onComponentChange={handleComponentChange}
       />
+      {currentGroups ? (
+        <GroupListContainer
+          activeGroupId={activeGroupId}
+          groups={currentGroups}
+          onClick={handleGroupClick}
+        />
+      ) : null}
     </div>
   );
 };

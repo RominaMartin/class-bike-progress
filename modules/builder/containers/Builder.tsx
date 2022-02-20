@@ -6,11 +6,12 @@ import { Container } from './Builder.styled';
 import ComponentList from './ComponentList';
 
 interface Props {
+  components?: { [id: string]: boolean };
   colors?: { [key: string]: string };
   onComponentChange: (colors: { [key: string]: string }) => void;
 }
 
-const Builder: FC<Props> = ({ colors = {}, onComponentChange = () => {} }) => {
+const Builder: FC<Props> = ({ components = {}, colors = {}, onComponentChange = () => {} }) => {
   const [bikeColors, setBikeColors] = useState(colors);
   const [bikeBaseColors, setBikeBaseColors] = useState(colors);
 
@@ -35,11 +36,14 @@ const Builder: FC<Props> = ({ colors = {}, onComponentChange = () => {} }) => {
 
   return (
     <Container>
-      <ComponentList
-        onColorHover={handleColorHover}
-        onColorSelection={handleColorSelection}
-        onColorPickerClose={handleColorPickerClosed}
-      />
+      {Object.keys(components).length ? (
+        <ComponentList
+          components={components}
+          onColorHover={handleColorHover}
+          onColorSelection={handleColorSelection}
+          onColorPickerClose={handleColorPickerClosed}
+        />
+      ) : null}
       <Bike {...bikeColors} />
     </Container>
   );

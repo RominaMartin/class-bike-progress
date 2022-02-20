@@ -6,13 +6,13 @@ export const Container = styled.div`
   height: 100%;
   text-align: center;
   box-sizing: border-box;
-  display: grid;
-  grid-template-columns: minmax(max-content, 100px) 1fr;
+  display: flex;
   align-items: center;
 
   svg {
     height: 100%;
     box-sizing: border-box;
     padding: 0 ${({ theme }) => theme.spacings.small3};
+    flex: 1;
   }
 `;

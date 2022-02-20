@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface IStyledButton {
   colorPickerVisible: boolean;
+  disabled: boolean;
 }
 
 export const Container = styled.div`
@@ -21,6 +22,13 @@ export const StyledButton = styled.button<IStyledButton>`
   height: 100%;
   width: 100%;
   border-right: ${({ colorPickerVisible }) => (colorPickerVisible ? 'none' : 'auto')};
+
+  ${({ theme, disabled }) =>
+    disabled &&
+    `
+    pointer-events: none;
+    border-color: ${theme.colors.silver300};
+  `};
 
   :hover {
     border-color: ${({ theme }) => theme.colors.yellow};
