@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { AppProps } from 'next/dist/shared/lib/router/router';
+import { useRouter } from 'next/router';
 
 import Builder from 'modules/builder/containers/Builder';
 import Header from 'components/header/Header';
@@ -8,6 +9,7 @@ import { IColors, IGroup } from 'definitions/Bikes.d';
 import GroupListContainer from 'modules/group/containers/GroupListContainer';
 import { get, post } from 'utils/fetcher';
 import Button from 'components/commons/button';
+import { useLocalStorage } from 'utils/hooks/useStorage';
 
 import type { NextPage } from 'next';
 
@@ -22,14 +24,19 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ groups }) => {
   const intl = useIntl();
+  const router = useRouter();
   const [view, setView] = useState(VIEWS.builder);
   const [activeGroupId, setActiveGroupId] = useState<string | null>(null);
   const [activeGroup, setActiveGroup] = useState<any | null>(null);
-  const [currentGroups, setCurrentGroups] = useState<IGroup | null>(null);
+  const [currentGroups, setCurrentGroups] = useLocalStorage<IGroup | null>('groups');
+  const [saveFailed, setSaveFailed] = useLocalStorage<boolean>('save_failed');
   const [isSaveDisabled, setSaveDisabled] = useState(true);
+  const isTeacher = router.query.teacher;
 
   useEffect(() => {
-    setCurrentGroups(groups);
+    if (!saveFailed) {
+      setCurrentGroups(groups);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -58,13 +65,17 @@ const Home: NextPage<HomeProps> = ({ groups }) => {
     }
   };
 
-  const onClick = async () => {
-    setSaveDisabled(true);
-    try {
-      await post('/bikes', currentGroups);
-    } catch (e) {
-      setSaveDisabled(false);
-      throw new Error('Unabled to save');
+  const handleSaveClick = async () => {
+    if (isTeacher) {
+      setSaveDisabled(true);
+      try {
+        await post('/bikes', currentGroups);
+        setSaveFailed(false);
+      } catch (e) {
+        setSaveDisabled(false);
+        setSaveFailed(true);
+        throw new Error('Unabled to save');
+      }
     }
   };
 
@@ -90,9 +101,11 @@ const Home: NextPage<HomeProps> = ({ groups }) => {
         />
       ) : null}
 
-      <Button fixed={['bottom', 'right']} disabled={isSaveDisabled} onClick={onClick}>
-        <FormattedMessage id={`common.save`} />
-      </Button>
+      {isTeacher ? (
+        <Button fixed={['bottom', 'right']} disabled={isSaveDisabled} onClick={handleSaveClick}>
+          <FormattedMessage id={`common.save`} />
+        </Button>
+      ) : null}
     </div>
   );
 };
