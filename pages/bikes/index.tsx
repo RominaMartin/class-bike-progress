@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { AppProps } from 'next/dist/shared/lib/router/router';
 
 import Builder from 'modules/builder/containers/Builder';
 import Header from 'components/header/Header';
 import { IColors, IGroup } from 'definitions/Bikes.d';
 import GroupListContainer from 'modules/group/containers/GroupListContainer';
-import { useLocalStorage } from 'utils/hooks/useStorage';
-import { request } from 'utils/fetcher';
+import { get, post } from 'utils/fetcher';
+import Button from 'components/commons/button';
 
 import type { NextPage } from 'next';
 
@@ -15,17 +16,20 @@ const VIEWS = {
   builder: 'builder',
 };
 
-const Home: NextPage = () => {
+interface HomeProps {
+  groups: IGroup;
+}
+
+const Home: NextPage<HomeProps> = ({ groups }) => {
   const intl = useIntl();
   const [view, setView] = useState(VIEWS.builder);
   const [activeGroupId, setActiveGroupId] = useState<string | null>(null);
   const [activeGroup, setActiveGroup] = useState<any | null>(null);
-  const [currentGroups, setCurrentGroups] = useLocalStorage<IGroup | null>('groups');
+  const [currentGroups, setCurrentGroups] = useState<IGroup | null>(null);
+  const [isSaveDisabled, setSaveDisabled] = useState(true);
 
   useEffect(() => {
-    request('/bikes').then(data => {
-      setCurrentGroups(data);
-    });
+    setCurrentGroups(groups);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -43,6 +47,7 @@ const Home: NextPage = () => {
         [activeGroupId]: activeGroup,
       });
     }
+    setSaveDisabled(false);
   };
 
   const handleGroupClick = (id: string) => {
@@ -50,6 +55,16 @@ const Home: NextPage = () => {
       setActiveGroupId(null);
     } else {
       setActiveGroupId(id);
+    }
+  };
+
+  const onClick = async () => {
+    setSaveDisabled(true);
+    try {
+      await post('/bikes', currentGroups);
+    } catch (e) {
+      setSaveDisabled(false);
+      throw new Error('Unabled to save');
     }
   };
 
@@ -74,8 +89,22 @@ const Home: NextPage = () => {
           onClick={handleGroupClick}
         />
       ) : null}
+
+      <Button fixed={['bottom', 'right']} disabled={isSaveDisabled} onClick={onClick}>
+        <FormattedMessage id={`common.save`} />
+      </Button>
     </div>
   );
+};
+
+export const getStaticProps = async () => {
+  const res = await get('/bikes');
+
+  return {
+    props: {
+      groups: res,
+    },
+  };
 };
 
 export default Home;

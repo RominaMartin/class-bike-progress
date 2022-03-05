@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react';
 
 import Bike from 'components/bike/Bike';
-import { IGroup } from 'context/BikesContext';
+import { IGroup } from 'definitions/Bikes.d';
 
 import { BikePreview, Container, GroupName, PeopleList, Person } from './GroupListContainer.styled';
 

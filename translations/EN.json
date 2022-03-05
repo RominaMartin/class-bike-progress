@@ -14,5 +14,8 @@
       "seatpost": "Seatpost",
       "tire": "Tires"
     }
+  },
+  "common": {
+    "save": "Save"
   }
 }
