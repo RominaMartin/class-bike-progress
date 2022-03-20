@@ -7,4 +7,6 @@ export const Container = styled.div`
   max-height: 420px;
   min-height: 360px;
   min-width: 100px;
+  padding-right: ${({ theme }) => theme.spacings.small2};
+  box-sizing: border-box;
 `;

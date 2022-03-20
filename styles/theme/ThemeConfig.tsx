@@ -36,11 +36,12 @@ html {
     font-size: ${({ theme }) => theme.global.fontSize};
     height: 100vh;
     line-height: 1.5;
-    margin: 0;
+    margin: 0 auto;
     min-height: -webkit-fill-available;
     min-height: 100vh;
     position: relative;
-    width: 100%
+    width: 100%;
+    max-width: 1200px;
   }
 
   ${({ theme }) => headingsGenerator(theme.headings)}

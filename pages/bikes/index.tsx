@@ -80,7 +80,7 @@ const Home: NextPage<HomeProps> = ({ groups }) => {
   };
 
   return (
-    <div>
+    <>
       <Header
         title={intl.formatMessage({ id: 'builder.title' })}
         description={intl.formatMessage(
@@ -93,6 +93,7 @@ const Home: NextPage<HomeProps> = ({ groups }) => {
         colors={activeGroup?.colors || {}}
         onComponentChange={handleComponentChange}
       />
+
       {currentGroups ? (
         <GroupListContainer
           activeGroupId={activeGroupId}
@@ -106,7 +107,7 @@ const Home: NextPage<HomeProps> = ({ groups }) => {
           <FormattedMessage id={`common.save`} />
         </Button>
       ) : null}
-    </div>
+    </>
   );
 };
 

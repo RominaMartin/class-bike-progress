@@ -5,16 +5,11 @@ interface IPreview {
 }
 
 export const Container = styled.div`
-  width: calc(100% - 32px);
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  height: 300px;
-  margin: auto;
+  display: flex;
 `;
 
 export const BikePreview = styled.div<IPreview>`
-  padding: 16px;
+  padding: 0 16px;
   font-family: Poppins;
   height: 100%;
   box-sizing: border-box;
@@ -36,6 +31,8 @@ export const BikePreview = styled.div<IPreview>`
 
 export const PeopleList = styled.ul`
   list-style: none;
+  text-align: center;
+  padding-top: ${({ theme }) => theme.spacings.small2};
 `;
 
 export const Person = styled.li``;
@@ -43,4 +40,5 @@ export const Person = styled.li``;
 export const GroupName = styled.h4`
   text-align: center;
   font-weight: bold;
+  padding-bottom: ${({ theme }) => theme.spacings.small2};
 `;

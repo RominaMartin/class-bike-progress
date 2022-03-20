@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 import Bike from 'components/bike/Bike';
 
@@ -10,6 +11,10 @@ interface Props {
   colors?: { [key: string]: string };
   onComponentChange: (colors: { [key: string]: string }) => void;
 }
+
+const BikeContainer = styled.div`
+  height: 100%;
+`;
 
 const Builder: FC<Props> = ({ components = {}, colors = {}, onComponentChange = () => {} }) => {
   const [bikeColors, setBikeColors] = useState(colors);
@@ -44,7 +49,9 @@ const Builder: FC<Props> = ({ components = {}, colors = {}, onComponentChange = 
           onColorPickerClose={handleColorPickerClosed}
         />
       ) : null}
-      <Bike {...bikeColors} />
+      <BikeContainer>
+        <Bike {...bikeColors} />
+      </BikeContainer>
     </Container>
   );
 };
