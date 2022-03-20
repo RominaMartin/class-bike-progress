@@ -2,14 +2,14 @@ import React, { Children, FC } from 'react';
 import styled from 'styled-components';
 
 type Props = {
-  disabled: boolean;
+  disabled?: boolean;
   fixed?: string[];
   onClick: () => void;
 };
 
 type IStyledButton = {
   fixed?: string[];
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 export const StyledButton = styled.button<IStyledButton>`

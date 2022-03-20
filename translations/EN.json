@@ -15,6 +15,15 @@
       "tire": "Tires"
     }
   },
+  "management": {
+    "title": "Manage permissions",
+    "description": "Customize group permissions",
+    "select": "Choose a group to edit",
+    "group_name": "Change group name",
+    "color": "Color",
+    "components": "Components",
+    "names": "Names (specify them split by commas)"
+  },
   "common": {
     "save": "Save"
   }

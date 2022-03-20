@@ -6,12 +6,14 @@ import { Color, Container } from './ColorPicker.styled';
 interface Props {
   visible?: boolean;
   colors?: Array<string>;
+  simple?: boolean;
   onChange?: (color: string) => void;
   onHover?: (color: string) => void;
 }
 
 const ColorPicker: FC<Props> = ({
   visible = false,
+  simple = false,
   colors,
   onChange = () => {},
   onHover = () => {},
@@ -37,7 +39,7 @@ const ColorPicker: FC<Props> = ({
   };
 
   return (
-    <Container visible={visible}>
+    <Container visible={visible} simple={simple}>
       {colors.map(color => (
         <Color key={color} color={color} onClick={handleClick} onMouseOver={handleHover} />
       ))}

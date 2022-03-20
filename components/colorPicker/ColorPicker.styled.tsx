@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface IColorPickerContainer {
   visible: boolean;
+  simple: boolean;
 }
 export const Container = styled.div<IColorPickerContainer>`
   position: absolute;
@@ -11,7 +12,7 @@ export const Container = styled.div<IColorPickerContainer>`
   grid-template-columns: repeat(7, 1fr);
   background-color: ${({ theme }) => theme.colors.white};
   padding: ${({ theme }) => theme.spacings.small1};
-  border: 2px solid ${({ theme }) => theme.colors.yellow};
+  border: 2px solid ${({ theme, simple }) => (simple ? 'transparent' : theme.colors.yellow)};
   border-left: none;
   width: 180px;
   /* flex-wrap: wrap; */
@@ -20,7 +21,7 @@ export const Container = styled.div<IColorPickerContainer>`
   box-sizing: border-box;
   transition: all 0.5s ease;
   align-items: center;
-  z-index: -1;
+  z-index: ${({ simple }) => (simple ? 0 : -1)};
 `;
 
 export const Color = styled.div`
