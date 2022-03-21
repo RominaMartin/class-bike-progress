@@ -2,4 +2,5 @@
 module.exports = {
   reactStrictMode: true,
   styledComponents: true,
+  target: 'serverless',
 };
