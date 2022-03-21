@@ -125,6 +125,7 @@ const Management: NextPage<ManagementProps> = ({ groups }) => {
     setSaveDisabled(true);
     try {
       await post('/bikes', currentGroups);
+      setSaveDisabled(false);
     } catch (e) {
       setSaveDisabled(false);
       throw new Error('Unabled to save');
