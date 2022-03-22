@@ -90,7 +90,7 @@ const Management: NextPage<ManagementProps> = ({ groups }) => {
         ...currentGroups,
         [selectedGroup]: {
           ...currentGroups[selectedGroup],
-          components: { ...currentGroups[selectedGroup].components, [name]: value },
+          components: { ...currentGroups[selectedGroup].components, [name]: !value },
         },
       });
     }
@@ -188,7 +188,7 @@ const Management: NextPage<ManagementProps> = ({ groups }) => {
                 <input
                   type="checkbox"
                   name={component}
-                  checked={currentGroup.components[component]}
+                  checked={!currentGroup.components[component]}
                   onChange={handleComponentChange}
                 />
               </label>
