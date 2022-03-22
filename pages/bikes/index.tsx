@@ -118,6 +118,7 @@ export const getStaticProps = async () => {
     props: {
       groups: res,
     },
+    revalidate: 60,
   };
 };
 
