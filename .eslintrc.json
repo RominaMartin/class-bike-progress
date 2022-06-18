@@ -2,7 +2,7 @@
   "extends": "next/core-web-vitals",
   "plugins": ["import", "prettier"],
   "rules": {
-    "no-console": "error",
+    "no-console": 1,
     "prettier/prettier": "error",
     "import/order": [
       "error",
