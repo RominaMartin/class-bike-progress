@@ -9,8 +9,7 @@ module.exports = (phase, { defaultConfig }) => {
     styledComponents: true,
     pwa: {
       dest: 'public',
-      dynamicStartUrl: false, // precache home page instead of storing it in runtime cache by default
-      register: false,
+      register: true,
       skipWaiting: false,
       buildExcludes: [/middleware-manifest\.json$/], // for Next 12, see https://github.com/shadowwalker/next-pwa/issues/288
     },
